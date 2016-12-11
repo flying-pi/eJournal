@@ -1,13 +1,18 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "createstudentform.h"
 
-int main(int argc, char *argv[])
-{
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+int main(int argc, char* argv[]) {
+  QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
+  qmlRegisterType<CreateStudentForm>("com.hpi.ejournal", 1, 0,
+                                     "CreateStudentForm");
 
-    return app.exec();
+  QGuiApplication app(argc, argv);
+
+  QQmlApplicationEngine engine;
+  engine.load(QUrl(QLatin1String("qrc:/main.qml")));
+  CreateStudentForm form;
+
+  return app.exec();
 }
