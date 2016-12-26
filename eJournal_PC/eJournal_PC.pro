@@ -1,9 +1,13 @@
-QT += qml quick
+QT += qml quick sql
 
-CONFIG += c++11
+CONFIG += c++14
 
 SOURCES += main.cpp \
-    createstudentform.cpp
+    createstudentform.cpp \
+    dbsingelton.cpp \
+    models/studentmodel.cpp \
+    allstudenttable.cpp
+
 
 RESOURCES += qml.qrc
 
@@ -16,4 +20,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    createstudentform.h
+    createstudentform.h \
+    dbsingelton.h \
+    models/studentmodel.h \
+    allstudenttable.h

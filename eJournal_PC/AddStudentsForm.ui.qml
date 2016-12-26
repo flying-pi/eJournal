@@ -1,7 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
-import com.hpi.ejournal 1.0
+import com.hpi.ejournal.CreateStudentForm 1.0
 
 
 
@@ -16,6 +16,15 @@ Item {
         firstName: firstName.text
         secondName: secondName.text
         fatherName: fatherName.text
+        isContract: contract.checked
+        studentBook: recordBookID.text
+        courceNum: cource.text
+        departamentName:  department.text
+        group: group.text
+        birthday: birthday.text
+        bodyCheck: bodyCheck.text
+        sportCategory: sports_category.currentIndex
+        isMale: maleCheckBtn.checked
     }
 
     Button {
@@ -110,11 +119,12 @@ Item {
             spacing: 0
             scale: 0.55
             RadioButton {
+                id:budget
                 x: 0
                 width: 127
                 font.pixelSize: 30
                 height: 20
-                text: "Денна"
+                text: "Бюджетна"
                 antialiasing: true
                 leftPadding: 0
                 spacing: 6
@@ -123,9 +133,10 @@ Item {
                 checked: true
             }
             RadioButton {
+                id:contract
                 font.pixelSize: 30
                 height: 20
-                text: "Заочна"
+                text: "Контрактна"
                 Layout.preferredHeight: 20
                 Layout.maximumHeight: 20
                 bottomPadding: 0
@@ -250,6 +261,7 @@ Item {
             spacing: 0
             scale: 0.55
             RadioButton {
+                id:maleCheckBtn
                 x: 0
                 width: 127
                 font.pixelSize: 30

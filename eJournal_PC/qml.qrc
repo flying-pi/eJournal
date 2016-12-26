@@ -4,5 +4,7 @@
         <file>AddStudents.qml</file>
         <file>AddStudentsForm.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>AllStudentList.qml</file>
+        <file>AllStudentListForm.qml</file>
     </qresource>
 </RCC>
