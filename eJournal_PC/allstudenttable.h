@@ -46,7 +46,7 @@ class AllStudentTable : public QAbstractTableModel {
   void onGroupChange(int row, QString group);
   void onBirthdayChange(int row, QString birthday);
   void onBodyCheckChange(int row, QString check);
-  void onCategoryChange(int row, int category);
+  void onCategoryChange(int row, QString category);
   void onGenderChange(int row, bool isMale);
 
  private:

@@ -5,6 +5,7 @@
 #include "dbsingelton.h"
 #include <QVariant>
 #include <QSqlError>
+#include "const.h"
 
 AllStudentTable::AllStudentTable(QObject* parent)
     : QAbstractTableModel(parent) {
@@ -28,6 +29,7 @@ AllStudentTable::AllStudentTable(QObject* parent)
     newItem->sportCategory =
         query.value(StudentField::sportCategory).toString();
     newItem->isMale = query.value(StudentField::isMale).toInt();
+    newItem->visits = query.value(StudentField::visits).toInt();
     studens.append(newItem);
   }
 }
@@ -76,29 +78,221 @@ void AllStudentTable::onFirstNameChange(int row, QString vale) {
   }
 }
 
-void AllStudentTable::onSecondNameChange(int row, QString vale) {}
+void AllStudentTable::onSecondNameChange(int row, QString vale) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->secondName == vale)
+    return;
+  studens.at(row)->secondName = vale;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::secondName + " = \'" + vale + "\' WHERE " +
+                     StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onFatherNameChange(int row, QString vale) {}
+void AllStudentTable::onFatherNameChange(int row, QString vale) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->fatherName == vale)
+    return;
+  studens.at(row)->fatherName = vale;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::fatherName + " = \'" + vale + "\' WHERE " +
+                     StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onVisitsChanges(int row, int count) {}
+void AllStudentTable::onVisitsChanges(int row, int count) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->visits == count)
+    return;
+  studens.at(row)->visits = count;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::visits + " = \'" + QString::number(count) +
+                     "\' WHERE " + StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onIsContractChange(int row, bool value) {}
+void AllStudentTable::onIsContractChange(int row, bool value) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->isContract == (value ? 1 : 0))
+    return;
+  studens.at(row)->isContract = (value ? 1 : 0);
+  QSqlQuery query;
+  QString queryStr =
+      "UPDATE " + StudentField::dbName + " SET " + StudentField::isKontract +
+      " = \'" + QString::number((value ? 1 : 0)) + "\' WHERE " +
+      StudentField::id + " = " + QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onStudentBoockChanged(int row, QString book) {}
+void AllStudentTable::onStudentBoockChanged(int row, QString vale) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->studentBook == vale)
+    return;
+  studens.at(row)->studentBook = vale;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::studentBook + " = \'" + vale + "\' WHERE " +
+                     StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onCourceNumChange(int row, int cource) {}
+void AllStudentTable::onCourceNumChange(int row, int cource) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->courceNum == cource)
+    return;
+  studens.at(row)->courceNum = cource;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::courceNum + " = \'" +
+                     QString::number(cource) + "\' WHERE " + StudentField::id +
+                     " = " + QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onDepartamentChange(int row, QString departament) {}
+void AllStudentTable::onDepartamentChange(int row, QString departament) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->departamentName == departament)
+    return;
+  studens.at(row)->departamentName = departament;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::departamentName + " = \'" + departament +
+                     "\' WHERE " + StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onGroupChange(int row, QString group) {}
+void AllStudentTable::onGroupChange(int row, QString group) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->group == group)
+    return;
+  studens.at(row)->group = group;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::group + " = \'" + group + "\' WHERE " +
+                     StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onBirthdayChange(int row, QString birthday) {}
+void AllStudentTable::onBirthdayChange(int row, QString birthday) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->birthday == birthday)
+    return;
+  studens.at(row)->birthday = birthday;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::birthday + " = \'" + birthday + "\' WHERE " +
+                     StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onBodyCheckChange(int row, QString check) {}
+void AllStudentTable::onBodyCheckChange(int row, QString check) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->bodyCheck == check)
+    return;
+  studens.at(row)->bodyCheck = check;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::bodyCheck + " = \'" + check + "\' WHERE " +
+                     StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onCategoryChange(int row, int category) {}
+void AllStudentTable::onCategoryChange(int row, QString category) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->sportCategory == category)
+    return;
+  studens.at(row)->sportCategory = category;
+  QSqlQuery query;
+  QString queryStr = "UPDATE " + StudentField::dbName + " SET " +
+                     StudentField::sportCategory + " = \'" + category +
+                     "\' WHERE " + StudentField::id + " = " +
+                     QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
-void AllStudentTable::onGenderChange(int row, bool isMale) {}
+void AllStudentTable::onGenderChange(int row, bool isMale) {
+  if (studens.size() <= row)
+    return;
+  if (studens.at(row)->isMale == isMale)
+    return;
+  studens.at(row)->isMale = isMale;
+  QSqlQuery query;
+  QString queryStr =
+      "UPDATE " + StudentField::dbName + " SET " + StudentField::isMale +
+      " = \'" + QString::number(isMale ? 1 : 0) + "\' WHERE " +
+      StudentField::id + " = " + QString::number(studens.at(row)->id);
+  qInfo() << "request to bd :: " << queryStr;
+  if (!query.exec(queryStr)) {
+    qDebug() << "error in query :: " << queryStr << "\t"
+             << query.lastError().text();
+  }
+}
 
 void AllStudentTable::updateStudentInDb(StudentModel* student) {}
 
@@ -151,7 +345,10 @@ QVariant AllStudentTable::data(const QModelIndex& index, int role) const {
       return newItem->bodyCheck;
       break;
     case AllStudentTable::sportCategory:
-      return newItem->sportCategory;
+      for (int i = 0; i < sportCategoryList.size(); i++)
+        if (newItem->sportCategory == sportCategoryList.at(i))
+          return i;
+      return 0;
       break;
     case AllStudentTable::isMale:
       return newItem->isMale ? 1 : 0;

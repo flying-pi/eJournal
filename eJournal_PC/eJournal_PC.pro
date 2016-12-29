@@ -23,4 +23,5 @@ HEADERS += \
     createstudentform.h \
     dbsingelton.h \
     models/studentmodel.h \
-    allstudenttable.h
+    allstudenttable.h \
+    const.h

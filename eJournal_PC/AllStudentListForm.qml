@@ -68,7 +68,7 @@ Item {
                         }
                     }
                     onTextChanged: {
-                        dataProvider.onSecondNameChange(styleData.row, secondNameColumn.text)
+                        dataProvider.onSecondNameChange(styleData.row, secondNameView.text)
                     }
                 }
             }
@@ -322,7 +322,7 @@ Item {
                 currentIndex:styleData.value
                 model: [ "Відсутній", "Мастер спорут", "Кандидат в майтсри спорту","Перший розряж","Другий розряд","Третій розряд" ]
                 onCurrentIndexChanged: {
-                    dataProvider.onCategoryChange(styleData.row,kategoryBox.currentIndex)
+                    dataProvider.onCategoryChange(styleData.row,kategoryBox.currentText)
                 }
             }
 
