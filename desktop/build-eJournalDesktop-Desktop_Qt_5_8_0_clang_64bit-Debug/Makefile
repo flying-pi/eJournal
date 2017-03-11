@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../eJournalDesktop -I. -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -F/Users/yurabraiko/Qt/5.8/clang_64/lib
+INCPATH       = -I../eJournalDesktop -I. -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -F/Users/yurabraiko/Qt/5.8/clang_64/lib
 QMAKE         = /Users/yurabraiko/Qt/5.8/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = eJournalDesktop1.0.0
 DISTDIR = /Users/yurabraiko/dev/qt/eJournal/desktop/build-eJournalDesktop-Desktop_Qt_5_8_0_clang_64bit-Debug/.tmp/eJournalDesktop1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_LFLAGS) -Wl,-rpath,/Users/yurabraiko/Qt/5.8/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/yurabraiko/Qt/5.8/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/yurabraiko/Qt/5.8/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtSql -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -50,13 +50,21 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../eJournalDesktop/main.cpp \
 		../eJournalDesktop/mainwindow.cpp \
-		../eJournalDesktop/addnewuser.cpp moc_mainwindow.cpp \
-		moc_addnewuser.cpp
+		../eJournalDesktop/addnewuser.cpp \
+		../eJournalDesktop/models/studentmodels.cpp \
+		../eJournalDesktop/models/basemodel.cpp moc_mainwindow.cpp \
+		moc_addnewuser.cpp \
+		moc_studentmodels.cpp \
+		moc_basemodel.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		addnewuser.o \
+		studentmodels.o \
+		basemodel.o \
 		moc_mainwindow.o \
-		moc_addnewuser.o
+		moc_addnewuser.o \
+		moc_studentmodels.o \
+		moc_basemodel.o
 DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/qdevice.pri \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/device_config.prf \
@@ -233,9 +241,14 @@ DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf 
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/yacc.prf \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/lex.prf \
 		../eJournalDesktop/eJournalDesktop.pro ../eJournalDesktop/mainwindow.h \
-		../eJournalDesktop/addnewuser.h ../eJournalDesktop/main.cpp \
+		../eJournalDesktop/addnewuser.h \
+		../eJournalDesktop/models/studentmodels.h \
+		../eJournalDesktop/models/basemodel.h \
+		../eJournalDesktop/models/dbiniter.h ../eJournalDesktop/main.cpp \
 		../eJournalDesktop/mainwindow.cpp \
-		../eJournalDesktop/addnewuser.cpp
+		../eJournalDesktop/addnewuser.cpp \
+		../eJournalDesktop/models/studentmodels.cpp \
+		../eJournalDesktop/models/basemodel.cpp
 QMAKE_TARGET  = eJournalDesktop
 DESTDIR       = 
 TARGET        = eJournalDesktop.app/Contents/MacOS/eJournalDesktop
@@ -426,6 +439,7 @@ Makefile: ../eJournalDesktop/eJournalDesktop.pro /Users/yurabraiko/Qt/5.8/clang_
 		../eJournalDesktop/eJournalDesktop.pro \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/QtGui.prl \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/QtSql.prl \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -o Makefile ../eJournalDesktop/eJournalDesktop.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf:
@@ -606,6 +620,7 @@ Makefile: ../eJournalDesktop/eJournalDesktop.pro /Users/yurabraiko/Qt/5.8/clang_
 ../eJournalDesktop/eJournalDesktop.pro:
 /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 /Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/QtGui.prl:
+/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/QtSql.prl:
 /Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../eJournalDesktop/eJournalDesktop.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
@@ -637,8 +652,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.h ../eJournalDesktop/addnewuser.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/addnewuser.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.h ../eJournalDesktop/addnewuser.h ../eJournalDesktop/models/studentmodels.h ../eJournalDesktop/models/basemodel.h ../eJournalDesktop/models/dbiniter.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/models/basemodel.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.ui ../eJournalDesktop/addnewuser.ui $(DISTDIR)/
 
 
@@ -670,22 +685,51 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_addnewuser.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_addnewuser.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp
 moc_mainwindow.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../eJournalDesktop/mainwindow.h \
 		moc_predefs.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
-	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/mainwindow.h -o moc_mainwindow.cpp
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/mainwindow.h -o moc_mainwindow.cpp
 
 moc_addnewuser.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../eJournalDesktop/addnewuser.h \
 		moc_predefs.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
-	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/addnewuser.h -o moc_addnewuser.cpp
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/addnewuser.h -o moc_addnewuser.cpp
+
+moc_studentmodels.cpp: ../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../eJournalDesktop/models/studentmodels.h \
+		moc_predefs.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/models/studentmodels.h -o moc_studentmodels.cpp
+
+moc_basemodel.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../eJournalDesktop/models/basemodel.h \
+		moc_predefs.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/models/basemodel.h -o moc_basemodel.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -719,7 +763,30 @@ main.o: ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../eJournalDesktop/addnewuser.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../eJournalDesktop/models/studentmodels.h \
+		../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../eJournalDesktop/models/dbiniter.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlDatabase \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlRecord \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../eJournalDesktop/main.cpp
 
 mainwindow.o: ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/mainwindow.h \
@@ -734,11 +801,55 @@ addnewuser.o: ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/addnewuser.h 
 		ui_addnewuser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addnewuser.o ../eJournalDesktop/addnewuser.cpp
 
+studentmodels.o: ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/models/studentmodels.h \
+		../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaMethod \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaProperty \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o studentmodels.o ../eJournalDesktop/models/studentmodels.cpp
+
+basemodel.o: ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaMethod \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QStringList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QStringBuilder \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o basemodel.o ../eJournalDesktop/models/basemodel.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 moc_addnewuser.o: moc_addnewuser.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_addnewuser.o moc_addnewuser.cpp
+
+moc_studentmodels.o: moc_studentmodels.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_studentmodels.o moc_studentmodels.cpp
+
+moc_basemodel.o: moc_basemodel.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_basemodel.o moc_basemodel.cpp
 
 ####### Install
 

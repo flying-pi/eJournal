@@ -38,21 +38,21 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="userName">
               <property name="placeholderText">
                <string>Ім'я</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3">
+             <widget class="QLineEdit" name="userSecondName">
               <property name="placeholderText">
                <string>Призвіще</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="userMidelName">
               <property name="placeholderText">
                <string>Побатькові</string>
               </property>
@@ -70,7 +70,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QDateEdit" name="dateEdit">
+             <widget class="QDateEdit" name="bornDate">
               <property name="displayFormat">
                <string>dd.MM.yyyy</string>
               </property>
@@ -108,7 +108,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QComboBox" name="genderBox">
               <property name="editable">
                <bool>false</bool>
               </property>
@@ -154,14 +154,14 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QLineEdit" name="lineEdit_4">
+             <widget class="QLineEdit" name="gradebook">
               <property name="placeholderText">
                <string>Номер залікової книжки</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_5">
+             <widget class="QLineEdit" name="academicGroup">
               <property name="placeholderText">
                <string>Академічна група</string>
               </property>
@@ -211,104 +211,104 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="ContactInformation">
-         <property name="title">
-          <string>Контактна інформація</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Адресса проживання: </string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_6"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_7">
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>Прописка:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBox_3">
-              <item>
-               <property name="text">
-                <string>Харківська</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Харківська,  гуртожиок</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Харківська область</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Інше місто</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
-            <item>
-             <widget class="QLineEdit" name="lineEdit_7">
-              <property name="placeholderText">
-               <string>Контактні номери</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_8">
-              <property name="placeholderText">
-               <string>Електронна пошта</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QGroupBox" name="torismInformation">
          <property name="title">
           <string>Інформація віндносно секції &quot;Туризм&quot;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
+           <widget class="QGroupBox" name="ContactInformation">
+            <property name="title">
+             <string>Контактна інформація</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Адресса проживання: </string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="address"/>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Прописка:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="registration">
+                 <item>
+                  <property name="text">
+                   <string>Харківська</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Харківська,  гуртожиок</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Харківська область</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Інше місто</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QLineEdit" name="phoneNumbers">
+                 <property name="placeholderText">
+                  <string>Контактні номери</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="email">
+                 <property name="placeholderText">
+                  <string>Електронна пошта</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
-             <widget class="QLineEdit" name="lineEdit_9">
+             <widget class="QLineEdit" name="groupT">
               <property name="placeholderText">
                <string>Группа на секції туризм</string>
               </property>
@@ -322,7 +322,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox_4">
+             <widget class="QComboBox" name="sportCategory">
               <item>
                <property name="text">
                 <string>Відсутній</string>
@@ -373,7 +373,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit">
+           <widget class="QPlainTextEdit" name="additionalInfor">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
