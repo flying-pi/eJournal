@@ -38,7 +38,6 @@ class StudentModels : public BaseModel {
 
  public:
   virtual QString getDBName();
-  Q_INVOKABLE void torert();
 };
 
 #endif  // STUDENTMODELS_H
