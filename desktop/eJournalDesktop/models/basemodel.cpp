@@ -66,6 +66,8 @@ void BaseModel::writeChanges() {
   for (int i = 0; i < keys.size(); i++)
     q.addBindValue(request.take(keys.at(i)));
 
+  qInfo() << q.executedQuery();
+
   if (!q.exec())
     qCritical() << q.lastError();
 

@@ -59,7 +59,7 @@ public:
     QLineEdit *academicGroup;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_3;
-    QComboBox *comboBox_2;
+    QComboBox *isContract;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *torismInformation;
     QVBoxLayout *verticalLayout_6;
@@ -192,10 +192,10 @@ public:
 
         horizontalLayout_5->addWidget(label_3);
 
-        comboBox_2 = new QComboBox(universitiInformation);
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
+        isContract = new QComboBox(universitiInformation);
+        isContract->setObjectName(QStringLiteral("isContract"));
 
-        horizontalLayout_5->addWidget(comboBox_2);
+        horizontalLayout_5->addWidget(isContract);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -355,8 +355,8 @@ public:
         gradebook->setPlaceholderText(QApplication::translate("AddNewUser", "\320\235\320\276\320\274\320\265\321\200 \320\267\320\260\320\273\321\226\320\272\320\276\320\262\320\276\321\227 \320\272\320\275\320\270\320\266\320\272\320\270", Q_NULLPTR));
         academicGroup->setPlaceholderText(QApplication::translate("AddNewUser", "\320\220\320\272\320\260\320\264\320\265\320\274\321\226\321\207\320\275\320\260 \320\263\321\200\321\203\320\277\320\260", Q_NULLPTR));
         label_3->setText(QApplication::translate("AddNewUser", "\320\244\320\276\321\200\320\274\320\260 \320\275\320\260\320\262\321\207\320\260\320\275\320\275\321\217: ", Q_NULLPTR));
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
+        isContract->clear();
+        isContract->insertItems(0, QStringList()
          << QApplication::translate("AddNewUser", "\320\221\321\216\320\264\320\266\320\265\321\202\320\275\320\260", Q_NULLPTR)
          << QApplication::translate("AddNewUser", "\320\232\320\276\320\275\321\202\321\200\320\260\320\272\321\202\320\275\320\260", Q_NULLPTR)
         );

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_StudentModels_t {
-    QByteArrayData data[21];
-    char stringdata0[358];
+    QByteArrayData data[31];
+    char stringdata0[532];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,12 +46,22 @@ QT_MOC_LITERAL(11, 202, 23), // "informationregistration"
 QT_MOC_LITERAL(12, 226, 27), // "informationtelephoneNumbers"
 QT_MOC_LITERAL(13, 254, 16), // "informationemail"
 QT_MOC_LITERAL(14, 271, 17), // "informationgroupT"
-QT_MOC_LITERAL(15, 289, 6), // "torert"
-QT_MOC_LITERAL(16, 296, 16), // "RegistrationType"
-QT_MOC_LITERAL(17, 313, 8), // "eKharkiv"
-QT_MOC_LITERAL(18, 322, 14), // "eKharkivHostel"
-QT_MOC_LITERAL(19, 337, 13), // "eKharkivRgion"
-QT_MOC_LITERAL(20, 351, 6) // "eOther"
+QT_MOC_LITERAL(15, 289, 24), // "informationsportCategory"
+QT_MOC_LITERAL(16, 314, 25), // "informationadditionalInfo"
+QT_MOC_LITERAL(17, 340, 16), // "RegistrationType"
+QT_MOC_LITERAL(18, 357, 8), // "eKharkiv"
+QT_MOC_LITERAL(19, 366, 14), // "eKharkivHostel"
+QT_MOC_LITERAL(20, 381, 13), // "eKharkivRgion"
+QT_MOC_LITERAL(21, 395, 10), // "eOtherTown"
+QT_MOC_LITERAL(22, 406, 18), // "eOtherRegistration"
+QT_MOC_LITERAL(23, 425, 13), // "SportCategory"
+QT_MOC_LITERAL(24, 439, 5), // "eNone"
+QT_MOC_LITERAL(25, 445, 12), // "eSportMaster"
+QT_MOC_LITERAL(26, 458, 20), // "eCandidateSportMater"
+QT_MOC_LITERAL(27, 479, 10), // "eCategory1"
+QT_MOC_LITERAL(28, 490, 10), // "eCategory2"
+QT_MOC_LITERAL(29, 501, 10), // "eCategory3"
+QT_MOC_LITERAL(30, 512, 19) // "eOtherSportCategory"
 
     },
     "StudentModels\0informationfirstName\0\0"
@@ -62,8 +72,13 @@ QT_MOC_LITERAL(20, 351, 6) // "eOther"
     "informationregistration\0"
     "informationtelephoneNumbers\0"
     "informationemail\0informationgroupT\0"
-    "torert\0RegistrationType\0eKharkiv\0"
-    "eKharkivHostel\0eKharkivRgion\0eOther"
+    "informationsportCategory\0"
+    "informationadditionalInfo\0RegistrationType\0"
+    "eKharkiv\0eKharkivHostel\0eKharkivRgion\0"
+    "eOtherTown\0eOtherRegistration\0"
+    "SportCategory\0eNone\0eSportMaster\0"
+    "eCandidateSportMater\0eCategory1\0"
+    "eCategory2\0eCategory3\0eOtherSportCategory"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,28 +88,29 @@ static const uint qt_meta_data_StudentModels[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      15,   14, // methods
        0,    0, // properties
-       1,   98, // enums/sets
+       2,  104, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
  // methods: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x00 /* Private */,
-       3,    0,   85,    2, 0x00 /* Private */,
-       4,    0,   86,    2, 0x00 /* Private */,
-       5,    0,   87,    2, 0x00 /* Private */,
-       6,    0,   88,    2, 0x00 /* Private */,
-       7,    0,   89,    2, 0x00 /* Private */,
-       8,    0,   90,    2, 0x00 /* Private */,
-       9,    0,   91,    2, 0x00 /* Private */,
-      10,    0,   92,    2, 0x00 /* Private */,
-      11,    0,   93,    2, 0x00 /* Private */,
-      12,    0,   94,    2, 0x00 /* Private */,
-      13,    0,   95,    2, 0x00 /* Private */,
-      14,    0,   96,    2, 0x00 /* Private */,
-      15,    0,   97,    2, 0x02 /* Public */,
+       1,    0,   89,    2, 0x00 /* Private */,
+       3,    0,   90,    2, 0x00 /* Private */,
+       4,    0,   91,    2, 0x00 /* Private */,
+       5,    0,   92,    2, 0x00 /* Private */,
+       6,    0,   93,    2, 0x00 /* Private */,
+       7,    0,   94,    2, 0x00 /* Private */,
+       8,    0,   95,    2, 0x00 /* Private */,
+       9,    0,   96,    2, 0x00 /* Private */,
+      10,    0,   97,    2, 0x00 /* Private */,
+      11,    0,   98,    2, 0x00 /* Private */,
+      12,    0,   99,    2, 0x00 /* Private */,
+      13,    0,  100,    2, 0x00 /* Private */,
+      14,    0,  101,    2, 0x00 /* Private */,
+      15,    0,  102,    2, 0x00 /* Private */,
+      16,    0,  103,    2, 0x00 /* Private */,
 
  // methods: parameters
     QMetaType::QString,
@@ -110,16 +126,26 @@ static const uint qt_meta_data_StudentModels[] = {
     QMetaType::QString,
     QMetaType::QString,
     QMetaType::QString,
-    QMetaType::Void,
+    QMetaType::QString,
+    QMetaType::QString,
 
  // enums: name, flags, count, data
-      16, 0x0,    4,  102,
+      17, 0x0,    5,  112,
+      23, 0x0,    7,  122,
 
  // enum data: key, value
-      17, uint(StudentModels::eKharkiv),
-      18, uint(StudentModels::eKharkivHostel),
-      19, uint(StudentModels::eKharkivRgion),
-      20, uint(StudentModels::eOther),
+      18, uint(StudentModels::eKharkiv),
+      19, uint(StudentModels::eKharkivHostel),
+      20, uint(StudentModels::eKharkivRgion),
+      21, uint(StudentModels::eOtherTown),
+      22, uint(StudentModels::eOtherRegistration),
+      24, uint(StudentModels::eNone),
+      25, uint(StudentModels::eSportMaster),
+      26, uint(StudentModels::eCandidateSportMater),
+      27, uint(StudentModels::eCategory1),
+      28, uint(StudentModels::eCategory2),
+      29, uint(StudentModels::eCategory3),
+      30, uint(StudentModels::eOtherSportCategory),
 
        0        // eod
 };
@@ -156,7 +182,10 @@ void StudentModels::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
         case 12: { QString _r = _t->informationgroupT();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 13: _t->torert(); break;
+        case 13: { QString _r = _t->informationsportCategory();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+        case 14: { QString _r = _t->informationadditionalInfo();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
@@ -187,13 +216,13 @@ int StudentModels::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 15)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 15;
     }
     return _id;
 }

@@ -3,16 +3,98 @@
 #include <QMetaProperty>
 #include <QDebug>
 
-StudentModels::StudentModels(QObject* parent) : BaseModel(parent) {
-  torert();
-}
-
-void StudentModels::torert() {}
+StudentModels::StudentModels(QObject* parent) : BaseModel(parent) {}
 
 StudentModels* StudentModels::someFun() {
   return this;
 }
 
-QString StudentModels::getDBName() {
-  return "StudentModels";
+QString StudentModels::RegistrationTypeToString(
+    StudentModels::RegistrationType type) {
+  switch (type) {
+    case StudentModels::eKharkiv:
+      return "Харків";
+      break;
+    case StudentModels::eKharkivHostel:
+      return "Харків,  гуртожиток";
+      break;
+    case StudentModels::eKharkivRgion:
+      return "Харківська область";
+      break;
+    case StudentModels::eOtherTown:
+      return "Інше місто";
+      break;
+    case StudentModels::eOtherRegistration:
+      return "Невідомо";
+      break;
+    default:
+      return "";
+  }
 }
+
+QString StudentModels::SportCategoryToString(
+    StudentModels::SportCategory type) {
+  switch (type) {
+    case StudentModels::eNone:
+      return "Відсутній";
+    case StudentModels::eSportMaster:
+      return "Мйстер спорту";
+    case StudentModels::eCandidateSportMater:
+      return "Кандидат в майстри спорту";
+    case StudentModels::eCategory1:
+      return "Перший розряд";
+    case StudentModels::eCategory2:
+      return "Другий розряд";
+    case StudentModels::eCategory3:
+      return "Третій розряд";
+    case StudentModels::eOtherSportCategory:
+      return "Невідомо";
+    default:
+      return "";
+  }
+}
+
+void StudentModels::updateDataFromSql(QSqlQuery& data) {
+  this->firstName = data.value(firstName_FIELD_NAME).toString();
+  this->midlName = data.value(midlName_FIELD_NAME).toString();
+  this->secondName = data.value(secondName_FIELD_NAME).toString();
+  this->bornDate = data.value(bornDate_FIELD_NAME).toDate();
+  this->gender = data.value(gender_FIELD_NAME).toInt();
+  this->gaderbook = data.value(gaderbook_FIELD_NAME).toString();
+  this->academicGroup = data.value(academicGroup_FIELD_NAME).toString();
+  this->isContract = data.value(isContract_FIELD_NAME).toBool();
+  this->registration =
+      (RegistrationType)QMetaEnum::fromType<StudentModels::RegistrationType>()
+          .keyToValue(data.value(registration_FIELD_NAME)
+                          .toString()
+                          .toStdString()
+                          .c_str());
+  this->telephoneNumbers = data.value(telephoneNumbers_FIELD_NAME).toString();
+  this->email = data.value(email_FIELD_NAME).toString();
+  this->groupT = data.value(groupT_FIELD_NAME).toString();
+  this->sportCategory =
+      (SportCategory)QMetaEnum::fromType<StudentModels::SportCategory>()
+          .keyToValue(data.value(sportCategory_FIELD_NAME)
+                          .toString()
+                          .toStdString()
+                          .c_str());
+  this->additionalInfo = data.value(additionalInfo_FIELD_NAME).toString();
+}
+
+QString StudentModels::StudentModelsTableName = "StudentModels";
+
+const QString cirilicStudentTableCollumnName[15] = {"Ім'я",
+                                                    "Призвіще",
+                                                    "По бітькові",
+                                                    "Дата Народження",
+                                                    "Стать",
+                                                    "Залікова книжка",
+                                                    "Академічна група",
+                                                    "Чи контракт",
+                                                    "Адресса",
+                                                    "Місце прописки",
+                                                    "Номер телефону",
+                                                    "Електронна пошта",
+                                                    "Група на секції",
+                                                    "Спортивний розряд",
+                                                    "Додаткова інформація"};

@@ -27,13 +27,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     addnewuser.cpp \
     models/studentmodels.cpp \
-    models/basemodel.cpp
+    models/basemodel.cpp \
+    models/studenttablemodel.cpp \
+    studentdisplay.cpp
 
 HEADERS  += mainwindow.h \
     addnewuser.h \
     models/studentmodels.h \
     models/basemodel.h \
-    models/dbiniter.h
+    models/dbiniter.h \
+    models/studenttablemodel.h \
+    models/insertindexmacrosoperatorinbasemodel.h \
+    studentdisplay.h
 
 FORMS    += mainwindow.ui \
-    addnewuser.ui
+    addnewuser.ui \
+    studentdisplay.ui
