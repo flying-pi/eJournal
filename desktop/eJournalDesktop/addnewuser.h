@@ -16,6 +16,10 @@ class AddNewUser : public QDialog {
   AddNewUser(StudentModels* student, QWidget* parent = 0);
   ~AddNewUser();
 
+ signals:
+
+  void closeSignal();
+
  private slots:
   void on_buttonBox_accepted();
 
@@ -24,6 +28,10 @@ class AddNewUser : public QDialog {
  private:
   Ui::AddNewUser* ui;
   StudentModels* student = nullptr;
+
+  // QWidget interface
+ protected:
+  virtual void closeEvent(QCloseEvent* event) override;
 };
 
 #endif  // ADDNEWUSER_H

@@ -31,8 +31,10 @@ int main(int argc, char* argv[]) {
       ->writeChanges();
 
   qDebug() << stm[2];
-  StudentDisplay w;
+  //  StudentDisplay w;
   //  AddNewUser w;
+  MainWindow w;
+
   w.show();
 
   return a.exec();

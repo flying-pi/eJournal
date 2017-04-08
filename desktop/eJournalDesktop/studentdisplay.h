@@ -25,11 +25,19 @@ class StudentDisplay : public QWidget {
 
   void initMenu();
 
+ signals:
+
+  void closeSignal();
+
  protected slots:
   void tableContextClick(const QPoint& pos);
   void onStudentEditCall();
  private slots:
   void on_addstudentBtn_clicked();
+
+  // QWidget interface
+ protected:
+  virtual void closeEvent(QCloseEvent* event) override;
 };
 
 #endif  // STUDENTDISPLAY_H

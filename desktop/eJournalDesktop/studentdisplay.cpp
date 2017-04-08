@@ -23,7 +23,6 @@ StudentDisplay::~StudentDisplay() {
   delete ui;
   delete studentTableModel;
   delete studentContextMenu;
-  delete editUserAction;
 }
 
 void StudentDisplay::initMenu() {
@@ -50,4 +49,9 @@ void StudentDisplay::onStudentEditCall() {
 void StudentDisplay::on_addstudentBtn_clicked() {
   AddNewUser* newUser = new AddNewUser();
   newUser->show();
+}
+
+void StudentDisplay::closeEvent(QCloseEvent* event) {
+  emit closeSignal();
+  event->accept();
 }

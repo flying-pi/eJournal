@@ -2,21 +2,33 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "addnewuser.h"
+#include "studentdisplay.h"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+ public:
+  explicit MainWindow(QWidget* parent = 0);
+  ~MainWindow();
 
-private:
-    Ui::MainWindow *ui;
+ private slots:
+  void on_pushButton_clicked();
+
+  void on_pushButton_2_clicked();
+
+  void on_visitsTable_clicked();
+
+  void onWindowClose();
+
+ private:
+  Ui::MainWindow* ui;
+  AddNewUser* newUserWindow = nullptr;
+  StudentDisplay* displayAllStudent = nullptr;
 };
 
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H

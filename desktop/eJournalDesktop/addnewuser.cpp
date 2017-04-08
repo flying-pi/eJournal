@@ -61,3 +61,8 @@ void AddNewUser::on_buttonBox_rejected() {
   student = nullptr;
   this->close();
 }
+
+void AddNewUser::closeEvent(QCloseEvent* event) {
+  emit closeSignal();
+  event->accept();
+}
