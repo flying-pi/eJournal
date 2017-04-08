@@ -54,12 +54,14 @@ SOURCES       = ../eJournalDesktop/main.cpp \
 		../eJournalDesktop/models/studentmodels.cpp \
 		../eJournalDesktop/models/basemodel.cpp \
 		../eJournalDesktop/models/studenttablemodel.cpp \
-		../eJournalDesktop/studentdisplay.cpp moc_mainwindow.cpp \
+		../eJournalDesktop/studentdisplay.cpp \
+		../eJournalDesktop/models/visitsmodel.cpp moc_mainwindow.cpp \
 		moc_addnewuser.cpp \
 		moc_studentmodels.cpp \
 		moc_basemodel.cpp \
 		moc_studenttablemodel.cpp \
-		moc_studentdisplay.cpp
+		moc_studentdisplay.cpp \
+		moc_visitsmodel.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		addnewuser.o \
@@ -67,12 +69,14 @@ OBJECTS       = main.o \
 		basemodel.o \
 		studenttablemodel.o \
 		studentdisplay.o \
+		visitsmodel.o \
 		moc_mainwindow.o \
 		moc_addnewuser.o \
 		moc_studentmodels.o \
 		moc_basemodel.o \
 		moc_studenttablemodel.o \
-		moc_studentdisplay.o
+		moc_studentdisplay.o \
+		moc_visitsmodel.o
 DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/qdevice.pri \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/device_config.prf \
@@ -256,13 +260,15 @@ DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf 
 		../eJournalDesktop/models/dbiniter.h \
 		../eJournalDesktop/models/studenttablemodel.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
-		../eJournalDesktop/studentdisplay.h ../eJournalDesktop/main.cpp \
+		../eJournalDesktop/studentdisplay.h \
+		../eJournalDesktop/models/visitsmodel.h ../eJournalDesktop/main.cpp \
 		../eJournalDesktop/mainwindow.cpp \
 		../eJournalDesktop/addnewuser.cpp \
 		../eJournalDesktop/models/studentmodels.cpp \
 		../eJournalDesktop/models/basemodel.cpp \
 		../eJournalDesktop/models/studenttablemodel.cpp \
-		../eJournalDesktop/studentdisplay.cpp
+		../eJournalDesktop/studentdisplay.cpp \
+		../eJournalDesktop/models/visitsmodel.cpp
 QMAKE_TARGET  = eJournalDesktop
 DESTDIR       = 
 TARGET        = eJournalDesktop.app/Contents/MacOS/eJournalDesktop
@@ -668,8 +674,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.h ../eJournalDesktop/addnewuser.h ../eJournalDesktop/models/studentmodels.h ../eJournalDesktop/models/basemodel.h ../eJournalDesktop/models/dbiniter.h ../eJournalDesktop/models/studenttablemodel.h ../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h ../eJournalDesktop/studentdisplay.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/studenttablemodel.cpp ../eJournalDesktop/studentdisplay.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.h ../eJournalDesktop/addnewuser.h ../eJournalDesktop/models/studentmodels.h ../eJournalDesktop/models/basemodel.h ../eJournalDesktop/models/dbiniter.h ../eJournalDesktop/models/studenttablemodel.h ../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h ../eJournalDesktop/studentdisplay.h ../eJournalDesktop/models/visitsmodel.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/studenttablemodel.cpp ../eJournalDesktop/studentdisplay.cpp ../eJournalDesktop/models/visitsmodel.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.ui ../eJournalDesktop/addnewuser.ui ../eJournalDesktop/studentdisplay.ui $(DISTDIR)/
 
 
@@ -702,9 +708,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp moc_visitsmodel.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp moc_visitsmodel.cpp
 moc_mainwindow.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../eJournalDesktop/mainwindow.h \
@@ -724,7 +730,13 @@ moc_addnewuser.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/He
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../eJournalDesktop/addnewuser.h \
@@ -741,7 +753,13 @@ moc_studentmodels.cpp: ../eJournalDesktop/models/basemodel.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../eJournalDesktop/models/studentmodels.h \
@@ -757,7 +775,13 @@ moc_basemodel.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Header
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../eJournalDesktop/models/basemodel.h \
 		moc_predefs.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
@@ -775,7 +799,13 @@ moc_studenttablemodel.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framewor
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../eJournalDesktop/models/studenttablemodel.h \
@@ -785,10 +815,57 @@ moc_studenttablemodel.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framewor
 
 moc_studentdisplay.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../eJournalDesktop/models/studenttablemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		../eJournalDesktop/models/studentmodels.h \
+		../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/Qmenu \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
 		../eJournalDesktop/studentdisplay.h \
 		moc_predefs.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
 	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/studentdisplay.h -o moc_studentdisplay.cpp
+
+moc_visitsmodel.cpp: ../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../eJournalDesktop/models/visitsmodel.h \
+		moc_predefs.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/models/visitsmodel.h -o moc_visitsmodel.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -837,25 +914,31 @@ main.o: ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../eJournalDesktop/models/dbiniter.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlDatabase \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlRecord \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../eJournalDesktop/models/visitsmodel.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QStringList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
 		../eJournalDesktop/studentdisplay.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../eJournalDesktop/models/studenttablemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/Qmenu \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmenu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../eJournalDesktop/main.cpp
 
 mainwindow.o: ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/mainwindow.h \
@@ -877,7 +960,13 @@ addnewuser.o: ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/addnewuser.h 
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		ui_addnewuser.h
@@ -893,14 +982,18 @@ studentmodels.o: ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaMethod \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaProperty \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaProperty
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o studentmodels.o ../eJournalDesktop/models/studentmodels.cpp
 
 basemodel.o: ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/basemodel.h \
@@ -912,19 +1005,19 @@ basemodel.o: ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/b
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaMethod \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMetaMethod \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QStringList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QStringBuilder \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
-		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o basemodel.o ../eJournalDesktop/models/basemodel.cpp
 
 studenttablemodel.o: ../eJournalDesktop/models/studenttablemodel.cpp ../eJournalDesktop/models/studenttablemodel.h \
@@ -940,7 +1033,13 @@ studenttablemodel.o: ../eJournalDesktop/models/studenttablemodel.cpp ../eJournal
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
 		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o studenttablemodel.o ../eJournalDesktop/models/studenttablemodel.cpp
@@ -948,8 +1047,56 @@ studenttablemodel.o: ../eJournalDesktop/models/studenttablemodel.cpp ../eJournal
 studentdisplay.o: ../eJournalDesktop/studentdisplay.cpp ../eJournalDesktop/studentdisplay.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		ui_studentdisplay.h
+		../eJournalDesktop/models/studenttablemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		../eJournalDesktop/models/studentmodels.h \
+		../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/Qmenu \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
+		ui_studentdisplay.h \
+		../eJournalDesktop/addnewuser.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o studentdisplay.o ../eJournalDesktop/studentdisplay.cpp
+
+visitsmodel.o: ../eJournalDesktop/models/visitsmodel.cpp ../eJournalDesktop/models/visitsmodel.h \
+		../eJournalDesktop/models/basemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/QSqlError \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o visitsmodel.o ../eJournalDesktop/models/visitsmodel.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -968,6 +1115,9 @@ moc_studenttablemodel.o: moc_studenttablemodel.cpp
 
 moc_studentdisplay.o: moc_studentdisplay.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_studentdisplay.o moc_studentdisplay.cpp
+
+moc_visitsmodel.o: moc_visitsmodel.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_visitsmodel.o moc_visitsmodel.cpp
 
 ####### Install
 

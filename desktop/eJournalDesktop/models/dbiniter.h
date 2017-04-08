@@ -7,6 +7,7 @@
 #include <QSqlRecord>
 #include "basemodel.h"
 #include "studentmodels.h"
+#include "visitsmodel.h"
 
 QSqlError initDB() {
   QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -17,6 +18,7 @@ QSqlError initDB() {
   QSqlQuery q;
   QList<BaseModel*> models;
   models.append(new StudentModels());
+  models.append(new VisitsModel());
   for (int i = 0; i < models.size(); i++) {
     bool isExist = false;
     for (int j = 0; j < tables.size() && (!isExist); j++) {

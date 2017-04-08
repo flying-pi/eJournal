@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     models/studentmodels.cpp \
     models/basemodel.cpp \
     models/studenttablemodel.cpp \
-    studentdisplay.cpp
+    studentdisplay.cpp \
+    models/visitsmodel.cpp
 
 HEADERS  += mainwindow.h \
     addnewuser.h \
@@ -38,7 +39,8 @@ HEADERS  += mainwindow.h \
     models/dbiniter.h \
     models/studenttablemodel.h \
     models/insertindexmacrosoperatorinbasemodel.h \
-    studentdisplay.h
+    studentdisplay.h \
+    models/visitsmodel.h
 
 FORMS    += mainwindow.ui \
     addnewuser.ui \

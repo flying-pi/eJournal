@@ -32,22 +32,22 @@ struct qt_meta_stringdata_StudentModels_t {
 static const qt_meta_stringdata_StudentModels_t qt_meta_stringdata_StudentModels = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "StudentModels"
-QT_MOC_LITERAL(1, 14, 20), // "informationfirstName"
-QT_MOC_LITERAL(2, 35, 0), // ""
-QT_MOC_LITERAL(3, 36, 19), // "informationmidlName"
-QT_MOC_LITERAL(4, 56, 21), // "informationsecondName"
-QT_MOC_LITERAL(5, 78, 19), // "informationbornDate"
-QT_MOC_LITERAL(6, 98, 17), // "informationgender"
-QT_MOC_LITERAL(7, 116, 20), // "informationgaderbook"
-QT_MOC_LITERAL(8, 137, 24), // "informationacademicGroup"
-QT_MOC_LITERAL(9, 162, 21), // "informationisContract"
-QT_MOC_LITERAL(10, 184, 17), // "informationadress"
-QT_MOC_LITERAL(11, 202, 23), // "informationregistration"
-QT_MOC_LITERAL(12, 226, 27), // "informationtelephoneNumbers"
-QT_MOC_LITERAL(13, 254, 16), // "informationemail"
-QT_MOC_LITERAL(14, 271, 17), // "informationgroupT"
-QT_MOC_LITERAL(15, 289, 24), // "informationsportCategory"
-QT_MOC_LITERAL(16, 314, 13), // "informationID"
+QT_MOC_LITERAL(1, 14, 13), // "informationID"
+QT_MOC_LITERAL(2, 28, 0), // ""
+QT_MOC_LITERAL(3, 29, 20), // "informationfirstName"
+QT_MOC_LITERAL(4, 50, 19), // "informationmidlName"
+QT_MOC_LITERAL(5, 70, 21), // "informationsecondName"
+QT_MOC_LITERAL(6, 92, 19), // "informationbornDate"
+QT_MOC_LITERAL(7, 112, 17), // "informationgender"
+QT_MOC_LITERAL(8, 130, 20), // "informationgaderbook"
+QT_MOC_LITERAL(9, 151, 24), // "informationacademicGroup"
+QT_MOC_LITERAL(10, 176, 21), // "informationisContract"
+QT_MOC_LITERAL(11, 198, 17), // "informationadress"
+QT_MOC_LITERAL(12, 216, 23), // "informationregistration"
+QT_MOC_LITERAL(13, 240, 27), // "informationtelephoneNumbers"
+QT_MOC_LITERAL(14, 268, 16), // "informationemail"
+QT_MOC_LITERAL(15, 285, 17), // "informationgroupT"
+QT_MOC_LITERAL(16, 303, 24), // "informationsportCategory"
 QT_MOC_LITERAL(17, 328, 25), // "informationadditionalInfo"
 QT_MOC_LITERAL(18, 354, 16), // "RegistrationType"
 QT_MOC_LITERAL(19, 371, 8), // "eKharkiv"
@@ -65,15 +65,15 @@ QT_MOC_LITERAL(30, 515, 10), // "eCategory3"
 QT_MOC_LITERAL(31, 526, 19) // "eOtherSportCategory"
 
     },
-    "StudentModels\0informationfirstName\0\0"
-    "informationmidlName\0informationsecondName\0"
-    "informationbornDate\0informationgender\0"
-    "informationgaderbook\0informationacademicGroup\0"
-    "informationisContract\0informationadress\0"
-    "informationregistration\0"
+    "StudentModels\0informationID\0\0"
+    "informationfirstName\0informationmidlName\0"
+    "informationsecondName\0informationbornDate\0"
+    "informationgender\0informationgaderbook\0"
+    "informationacademicGroup\0informationisContract\0"
+    "informationadress\0informationregistration\0"
     "informationtelephoneNumbers\0"
     "informationemail\0informationgroupT\0"
-    "informationsportCategory\0informationID\0"
+    "informationsportCategory\0"
     "informationadditionalInfo\0RegistrationType\0"
     "eKharkiv\0eKharkivHostel\0eKharkivRgion\0"
     "eOtherTown\0eOtherRegistration\0"
@@ -159,35 +159,35 @@ void StudentModels::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         StudentModels *_t = static_cast<StudentModels *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: { QString _r = _t->informationfirstName();
+        case 0: { QString _r = _t->informationID();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 1: { QString _r = _t->informationmidlName();
+        case 1: { QString _r = _t->informationfirstName();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 2: { QString _r = _t->informationsecondName();
+        case 2: { QString _r = _t->informationmidlName();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 3: { QString _r = _t->informationbornDate();
+        case 3: { QString _r = _t->informationsecondName();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 4: { QString _r = _t->informationgender();
+        case 4: { QString _r = _t->informationbornDate();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 5: { QString _r = _t->informationgaderbook();
+        case 5: { QString _r = _t->informationgender();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 6: { QString _r = _t->informationacademicGroup();
+        case 6: { QString _r = _t->informationgaderbook();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 7: { QString _r = _t->informationisContract();
+        case 7: { QString _r = _t->informationacademicGroup();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 8: { QString _r = _t->informationadress();
+        case 8: { QString _r = _t->informationisContract();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 9: { QString _r = _t->informationregistration();
+        case 9: { QString _r = _t->informationadress();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 10: { QString _r = _t->informationtelephoneNumbers();
+        case 10: { QString _r = _t->informationregistration();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 11: { QString _r = _t->informationemail();
+        case 11: { QString _r = _t->informationtelephoneNumbers();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 12: { QString _r = _t->informationgroupT();
+        case 12: { QString _r = _t->informationemail();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 13: { QString _r = _t->informationsportCategory();
+        case 13: { QString _r = _t->informationgroupT();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 14: { QString _r = _t->informationID();
+        case 14: { QString _r = _t->informationsportCategory();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
         case 15: { QString _r = _t->informationadditionalInfo();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;

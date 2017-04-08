@@ -51,6 +51,8 @@ class StudentModels : public BaseModel {
     }
   }
 
+  idSupport(StudentModels);
+
   dbField(StudentModels, QString, TEXT NOT NULL, firstName, "");
   dbField(StudentModels, QString, TEXT NOT NULL, midlName, "");
   dbField(StudentModels, QString, TEXT, secondName, "");
@@ -73,8 +75,6 @@ class StudentModels : public BaseModel {
           INTEGER,
           sportCategory,
           SportCategory::eOtherSportCategory);
-  idSupport(StudentModels);
-
   dbField(StudentModels, QString, TEXT, additionalInfo, "");
 
   insertIndexMacrosOperator(15,
