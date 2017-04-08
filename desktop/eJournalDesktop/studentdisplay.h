@@ -28,6 +28,8 @@ class StudentDisplay : public QWidget {
  protected slots:
   void tableContextClick(const QPoint& pos);
   void onStudentEditCall();
+ private slots:
+  void on_addstudentBtn_clicked();
 };
 
 #endif  // STUDENTDISPLAY_H

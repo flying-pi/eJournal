@@ -46,3 +46,8 @@ void StudentDisplay::onStudentEditCall() {
       studentTableModel->getStudentAt(ui->students->indexAt(clickPos)));
   newUser->show();
 }
+
+void StudentDisplay::on_addstudentBtn_clicked() {
+  AddNewUser* newUser = new AddNewUser();
+  newUser->show();
+}

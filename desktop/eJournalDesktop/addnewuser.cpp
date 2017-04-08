@@ -2,7 +2,9 @@
 #include "ui_addnewuser.h"
 
 AddNewUser::AddNewUser(QWidget* parent)
-    : QDialog(parent), ui(new Ui::AddNewUser) {}
+    : QDialog(parent), ui(new Ui::AddNewUser) {
+  ui->setupUi(this);
+}
 
 AddNewUser::AddNewUser(StudentModels* student, QWidget* parent)
     : QDialog(parent), ui(new Ui::AddNewUser) {
@@ -32,7 +34,9 @@ AddNewUser::~AddNewUser() {
 }
 
 void AddNewUser::on_buttonBox_accepted() {
-  student = new StudentModels();
+  if (student == nullptr) {
+    student = new StudentModels();
+  }
   student->setfirstName(ui->userName->text())
       ->setsecondName(ui->userSecondName->text())
       ->setmidlName(ui->userMidelName->text())

@@ -73,6 +73,7 @@ class StudentModels : public BaseModel {
           INTEGER,
           sportCategory,
           SportCategory::eOtherSportCategory);
+  idSupport(StudentModels);
 
   dbField(StudentModels, QString, TEXT, additionalInfo, "");
 

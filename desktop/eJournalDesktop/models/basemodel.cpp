@@ -44,19 +44,35 @@ void BaseModel::writeChanges() {
   QSqlQuery q;
   QString requestString;
 
-  requestString = "insert into " + getDBName() + " (";
   QList<QString> keys = request.keys();
-  QString value = "";
-  for (int i = 0; i < keys.size(); i++) {
-    requestString.append(keys.at(i));
-    value.append("?");
-    if (i != keys.size() - 1) {
-      requestString.append(", ");
-      value.append(", ");
-    }
-  }
 
-  requestString.append(")values (").append(value).append(")");
+  if (isHaveID() && ID > 0) {
+    requestString = " UPDATE ";
+    requestString += getDBName();
+    requestString += " SET ";
+    for (int i = 0; i < keys.size(); i++) {
+      requestString.append(keys.at(i));
+      requestString.append(" = ?");
+      if (i != keys.size() - 1)
+        requestString.append(", ");
+    }
+
+    requestString.append(" WHERE ID = ").append(QString::number(ID));
+  } else {
+    requestString = "insert into ";
+    requestString += getDBName() + " (";
+    QString value = "";
+    for (int i = 0; i < keys.size(); i++) {
+      requestString.append(keys.at(i));
+      value.append("?");
+      if (i != keys.size() - 1) {
+        requestString.append(", ");
+        value.append(", ");
+      }
+    }
+
+    requestString.append(")values (").append(value).append(")");
+  }
   qDebug() << requestString;
   if (!q.prepare(requestString)) {
     qCritical() << q.lastError();

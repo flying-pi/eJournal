@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
@@ -25,6 +26,7 @@ class Ui_StudentDisplay
 public:
     QGridLayout *gridLayout;
     QTableView *students;
+    QPushButton *addstudentBtn;
 
     void setupUi(QWidget *StudentDisplay)
     {
@@ -58,6 +60,11 @@ public:
 
         gridLayout->addWidget(students, 0, 0, 1, 1);
 
+        addstudentBtn = new QPushButton(StudentDisplay);
+        addstudentBtn->setObjectName(QStringLiteral("addstudentBtn"));
+
+        gridLayout->addWidget(addstudentBtn, 1, 0, 1, 1);
+
 
         retranslateUi(StudentDisplay);
 
@@ -67,6 +74,7 @@ public:
     void retranslateUi(QWidget *StudentDisplay)
     {
         StudentDisplay->setWindowTitle(QApplication::translate("StudentDisplay", "Form", Q_NULLPTR));
+        addstudentBtn->setText(QApplication::translate("StudentDisplay", "\320\224\320\276\320\264\320\260\321\202\320\270 \320\275\320\276\320\262\320\276\320\263\320\276 \321\201\321\202\321\203\320\264\320\265\320\275\321\202\320\260", Q_NULLPTR));
     } // retranslateUi
 
 };

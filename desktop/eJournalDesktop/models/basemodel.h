@@ -27,19 +27,19 @@
  private:                                                            \
   Q_INVOKABLE QString information##varName() { return #dbType; }
 
-#define idSupport(modelNameClass)                   \
- protected:                                         \
-  virtual bool isHaveID() { return true; }          \
-                                                    \
- private:                                           \
-  Q_INVOKABLE QString informationID() {             \
-    return "INTEGER PRIMARY KEY AUTOINCREMENT";     \
-  }                                                 \
-                                                    \
- public:                                            \
-  static QList<modelNameClass> selectByID(int id) { \
-    return select("ID", QVariant.fromValue(id));    \
-  }                                                 \
+#define idSupport(modelNameClass)                      \
+ protected:                                            \
+  virtual bool isHaveID() { return true; }             \
+                                                       \
+ private:                                              \
+  Q_INVOKABLE QString informationID() {                \
+    return "INTEGER PRIMARY KEY AUTOINCREMENT";        \
+  }                                                    \
+                                                       \
+ public:                                               \
+  static QList<modelNameClass*>* selectByID(int id) {  \
+    return select<modelNameClass>("ID", QVariant(id)); \
+  }                                                    \
   int getID() { return ID; }
 
 #define insertIndexMacrosOperator(count, ...)      \
@@ -89,11 +89,16 @@ class BaseModel : public QObject {
   }
 
   template <typename T>
+  static QList<T*>* select(QString request, QVariant data) {
+    QList<QVariant> dataList;
+    dataList.append(data);
+    return select<T>(request, dataList);
+  }
+
+  template <typename T>
   QList<T*>* selectAll() {
     return select<T>("", QList<QVariant>());
   }
-
-  long int id = -1;
 };
 
 #endif  // BASEMODEL_H
