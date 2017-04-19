@@ -30,7 +30,10 @@ SOURCES += main.cpp\
     models/basemodel.cpp \
     models/studenttablemodel.cpp \
     studentdisplay.cpp \
-    models/visitsmodel.cpp
+    models/visitsmodel.cpp \
+    visitwindows.cpp \
+    models/visitstablemodel.cpp \
+    const.cpp
 
 HEADERS  += mainwindow.h \
     addnewuser.h \
@@ -40,8 +43,12 @@ HEADERS  += mainwindow.h \
     models/studenttablemodel.h \
     models/insertindexmacrosoperatorinbasemodel.h \
     studentdisplay.h \
-    models/visitsmodel.h
+    models/visitsmodel.h \
+    visitwindows.h \
+    models/visitstablemodel.h \
+    const.h
 
 FORMS    += mainwindow.ui \
     addnewuser.ui \
-    studentdisplay.ui
+    studentdisplay.ui \
+    visitwindows.ui

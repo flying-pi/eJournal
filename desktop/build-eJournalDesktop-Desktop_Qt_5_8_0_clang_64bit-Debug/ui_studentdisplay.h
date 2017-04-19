@@ -104,15 +104,15 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(students->sizePolicy().hasHeightForWidth());
         students->setSizePolicy(sizePolicy);
-        students->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        students->setEditTriggers(QAbstractItemView::DoubleClicked);
         students->setProperty("showDropIndicator", QVariant(false));
         students->setDragEnabled(false);
         students->setDragDropOverwriteMode(false);
         students->setDragDropMode(QAbstractItemView::NoDragDrop);
         students->setDefaultDropAction(Qt::IgnoreAction);
         students->setAlternatingRowColors(true);
-        students->setSelectionMode(QAbstractItemView::NoSelection);
-        students->setSelectionBehavior(QAbstractItemView::SelectRows);
+        students->setSelectionMode(QAbstractItemView::SingleSelection);
+        students->setSelectionBehavior(QAbstractItemView::SelectItems);
         students->setTextElideMode(Qt::ElideLeft);
         students->setGridStyle(Qt::DashLine);
         students->setSortingEnabled(true);

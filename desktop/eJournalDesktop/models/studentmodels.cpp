@@ -54,6 +54,32 @@ QString StudentModels::SportCategoryToString(
   }
 }
 
+bool StudentModels::convertUserRequestToSql(const QString& userRequest,
+                                            QString& outSqlRequest,
+                                            QString target) {
+  QStringList limitation;
+  if (userRequest.contains(DEPARTAMENT_NAME_REQUEST_STRING)) {
+    int startIndex = userRequest.indexOf(DEPARTAMENT_NAME_REQUEST_STRING) +
+                     DEPARTAMENT_NAME_REQUEST_STRING.length() + 1;
+    QString buf = "";
+    for (int i = startIndex;
+         i < userRequest.length() && userRequest.at(i) != ")"; i++) {
+      buf += userRequest.at(i);
+    }
+    limitation.append("academicGroup LIKE \'%" + buf + "%\'");
+    qDebug() << buf;
+  }
+  outSqlRequest =
+      "SELECT " + target + " FROM " + StudentModelsTableName + " WHERE ";
+  for (int i = 0; i < limitation.size(); i++) {
+    outSqlRequest += limitation.at(i);
+    if (i < limitation.size() - 1) {
+      outSqlRequest += " AND ";
+    }
+  }
+  return true;
+}
+
 void StudentModels::updateDataFromSql(QSqlQuery& data) {
   this->firstName = data.value(firstName_FIELD_NAME).toString();
   this->midlName = data.value(midlName_FIELD_NAME).toString();
@@ -98,3 +124,6 @@ const QString cirilicStudentTableCollumnName[15] = {"Ім'я",
                                                     "Група на секції",
                                                     "Спортивний розряд",
                                                     "Додаткова інформація"};
+
+const QString STUDENT_NAME_REQUEST_STRING = "Ім'я";
+const QString DEPARTAMENT_NAME_REQUEST_STRING = "Факультет";

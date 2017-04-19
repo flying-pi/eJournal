@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "addnewuser.h"
 #include "studentdisplay.h"
+#include "visitwindows.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow* ui;
   AddNewUser* newUserWindow = nullptr;
   StudentDisplay* displayAllStudent = nullptr;
+  VisitWindows* visitWindows = nullptr;
 };
 
 #endif  // MAINWINDOW_H

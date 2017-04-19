@@ -15,17 +15,24 @@ QString BaseModel::getDBName() {
 QString BaseModel::getCreateTableString() {
   QString result = "create table " + getDBName() + " (";
   QList<QString> puts;
+  QList<QString> additionalParams;
   for (int i = 0; i < this->metaObject()->methodCount(); i++) {
     QMetaMethod method = this->metaObject()->method(i);
     QString methodName = QString(method.name());
-    if (!methodName.startsWith("information"))
+    if (methodName.startsWith("information")) {
+      QString methodResult = "";
+      method.invoke(this, Qt::DirectConnection,
+                    Q_RETURN_ARG(QString, methodResult));
+      puts.append(methodName.replace("information", ""));
+      puts.append(methodResult);
       continue;
-
-    QString methodResult = "";
-    method.invoke(this, Qt::DirectConnection,
-                  Q_RETURN_ARG(QString, methodResult));
-    puts.append(methodName.replace("information", ""));
-    puts.append(methodResult);
+    }
+    if (methodName.startsWith("additionalParamters")) {
+      QString methodResult = "";
+      method.invoke(this, Qt::DirectConnection,
+                    Q_RETURN_ARG(QString, methodResult));
+      additionalParams.append(methodResult);
+    }
   }
 
   for (int i = 0; i < puts.size(); i += 2) {
@@ -33,7 +40,12 @@ QString BaseModel::getCreateTableString() {
     if (i != puts.length() - 2)
       result.append(",");
   }
-  result.append(")");
+  if (puts.size() > 0 && additionalParams.size() > 0)
+    for (int i = 0; i < additionalParams.size(); i++) {
+      result.append(" , ");
+      result.append(additionalParams.at(i));
+    }
+  result.append(" ) ;");
   qDebug() << result;
   return result;
 }
@@ -71,7 +83,7 @@ void BaseModel::writeChanges() {
       }
     }
 
-    requestString.append(")values (").append(value).append(")");
+    requestString.append(" ) values ( ").append(value).append(" ) ");
   }
   qDebug() << requestString;
   if (!q.prepare(requestString)) {
@@ -82,12 +94,11 @@ void BaseModel::writeChanges() {
   for (int i = 0; i < keys.size(); i++)
     q.addBindValue(request.take(keys.at(i)));
 
-  qInfo() << q.executedQuery();
-
   if (!q.exec())
-    qCritical() << q.lastError();
-
-  qInfo() << "success insert changes";
+    qCritical() << requestString << "|" << request.values() << " \|/ "
+                << q.lastError();
+  else
+    qInfo() << "success insert changes";
 
   request.clear();
 }

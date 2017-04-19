@@ -9,6 +9,9 @@
 
 extern const QString cirilicStudentTableCollumnName[15];
 
+extern const QString STUDENT_NAME_REQUEST_STRING;
+extern const QString DEPARTAMENT_NAME_REQUEST_STRING;
+
 class StudentModels : public BaseModel {
   Q_OBJECT
 
@@ -101,6 +104,14 @@ class StudentModels : public BaseModel {
     return select<StudentModels>(
         "select * from " + StudentModels::StudentModelsTableName,
         QList<QVariant>());
+  }
+
+  static bool convertUserRequestToSql(const QString& userRequest,
+                                      QString& outSqlRequest,
+                                      QString target = "*");
+
+  inline QString getFullName() {
+    return getfirstName() + " " + getsecondName();
   }
 
   // BaseModel interface

@@ -27,6 +27,10 @@
  private:                                                            \
   Q_INVOKABLE QString information##varName() { return #dbType; }
 
+#define additionalPArams(params, marker) \
+ private:                                \
+  Q_INVOKABLE QString additionalParamters##marker() { return params; }
+
 #define idSupport(modelNameClass)                      \
  protected:                                            \
   virtual bool isHaveID() { return true; }             \
@@ -63,18 +67,24 @@ class BaseModel : public QObject {
   QMap<QString, QVariant> request;
   virtual bool isHaveID() { return false; }
   virtual void updateDataFromSql(QSqlQuery& data) = 0;
-  int ID;
+  int ID = -1;
 
   template <typename T>
   static QList<T*>* select(QString request, QList<QVariant> data) {
     QSqlQuery query;
     QList<T*>* result = new QList<T*>();
-    if (!query.prepare(request))
-      qCritical() << query.lastError().text();
+    if (!query.prepare(request)) {
+      qCritical() << "error prepatring query \"" << request << "\" | "
+                  << query.lastError().text();
+      return nullptr;
+    }
+    qDebug() << "starting request :: " << request << " | " << data;
     for (int i = 0; i < data.size(); i++)
       query.bindValue(i, data.at(i));
-    if (!query.exec()) {
-      qCritical() << query.lastError().text();
+    if (!query.exec(request)) {
+      qCritical() << "error executing query \"" << request << "\" | "
+                  << query.lastError().text();
+      return nullptr;
     } else {
       while (query.next()) {
         BaseModel* newItem = new T();
@@ -91,13 +101,19 @@ class BaseModel : public QObject {
   template <typename T>
   static QList<T*>* select(QString request, QVariant data) {
     QList<QVariant> dataList;
-    dataList.append(data);
+    if (!data.isNull())
+      dataList.append(data);
     return select<T>(request, dataList);
   }
 
   template <typename T>
+  static QList<T*>* select(QString request) {
+    return select<T>(request, QList<QVariant>());
+  }
+
+  template <typename T>
   QList<T*>* selectAll() {
-    return select<T>("", QList<QVariant>());
+    return select<T>(" * ", QList<QVariant>());
   }
 };
 
