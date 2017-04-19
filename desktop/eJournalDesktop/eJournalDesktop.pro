@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     models/visitsmodel.cpp \
     visitwindows.cpp \
     models/visitstablemodel.cpp \
-    const.cpp
+    const.cpp \
+    addnewvisitdialog.cpp
 
 HEADERS  += mainwindow.h \
     addnewuser.h \
@@ -46,9 +47,14 @@ HEADERS  += mainwindow.h \
     models/visitsmodel.h \
     visitwindows.h \
     models/visitstablemodel.h \
-    const.h
+    const.h \
+    addnewvisitdialog.h
 
 FORMS    += mainwindow.ui \
     addnewuser.ui \
     studentdisplay.ui \
-    visitwindows.ui
+    visitwindows.ui \
+    addnewvisitdialog.ui
+
+DISTFILES += \
+    todolist

@@ -14,10 +14,13 @@ class VisitsModel : public BaseModel {
   idSupport(VisitsModel);
 
   dbField(VisitsModel, QDate, TEXT NOT NULL, date, QDate(1998, 0, 0));
+  dbField(VisitsModel, QString, TEXT, comment, "");
   dbField(VisitsModel, int, INTEGER NOT NULL, studentID, -1);
   dbField(VisitsModel, double, REAL NOT NULL, mark, false);
 
   additionalPArams("UNIQUE(" + date_FIELD_NAME + " , " + studentID_FIELD_NAME +
+                       " , " +
+                       comment_FIELD_NAME +
                        " ) ON CONFLICT REPLACE",
                    uniqueMarker);
 

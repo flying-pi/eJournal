@@ -71,6 +71,13 @@ QVariant VisitsTableModel::headerData(int section,
   }
 }
 
+void VisitsTableModel::addNewDate(QDate date, QString comment) {
+  this->collumnName.insert(0, date.toString(DATE_FORMAT));
+  this->visits.insert(0, new QList<VisitsModel*>());
+  for (int i = 0; i < students->size(); i++)
+    visits.at(0)->append(nullptr);
+}
+
 Qt::ItemFlags VisitsTableModel::flags(const QModelIndex& index) const {
   Qt::ItemFlags result = QAbstractTableModel::flags(index);
   if (index.column() > 0)

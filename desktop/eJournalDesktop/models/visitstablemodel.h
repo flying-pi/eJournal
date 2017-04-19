@@ -22,6 +22,8 @@ class VisitsTableModel : public QAbstractTableModel {
                               Qt::Orientation orientation,
                               int role) const override;
 
+  void addNewDate(QDate date, QString comment);
+
  private:
   QList<StudentModels*>* students = nullptr;
   QList<QList<VisitsModel*>*> visits;

@@ -35,4 +35,23 @@ void VisitWindows::appendSearchFilter(QString filterName) {
   ui->requestField->setCursorPosition(request.length() - 1);
 }
 
-void VisitWindows::on_AddNewDateButton_clicked() {}
+void VisitWindows::on_AddNewDateButton_clicked() {
+  addNewVisitDialog = new AddNewVisitDialog();
+  connect(addNewVisitDialog, SIGNAL(onDateCreate(QDate, QString)), this,
+          SLOT(onNewDateAdded(QDate, QString)));
+  connect(addNewVisitDialog, SIGNAL(onFormClose()), this,
+          SLOT(onAddDataDialogClose()));
+  addNewVisitDialog->show();
+}
+
+void VisitWindows::onNewDateAdded(QDate date, QString comment) {
+  visitTableModel->addNewDate(date, comment);
+  ui->visitTable->setModel(nullptr);
+  ui->visitTable->setModel(visitTableModel);
+  ui->visitTable->repaint();
+}
+
+void VisitWindows::onAddDataDialogClose() {
+  if (addNewVisitDialog)
+    delete addNewVisitDialog;
+}

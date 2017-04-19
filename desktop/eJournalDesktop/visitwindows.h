@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "models/visitstablemodel.h"
+#include "addnewvisitdialog.h"
 
 namespace Ui {
 class VisitWindows;
@@ -18,8 +19,10 @@ class VisitWindows : public QWidget {
  private slots:
   void on_studentSearchFilter_clicked();
   void on_departamentSearchFilter_clicked();
-
   void on_AddNewDateButton_clicked();
+
+  void onNewDateAdded(QDate date, QString comment);
+  void onAddDataDialogClose();
 
  signals:
 
@@ -32,6 +35,8 @@ class VisitWindows : public QWidget {
   Ui::VisitWindows* ui;
   void appendSearchFilter(QString filterName);
   VisitsTableModel* visitTableModel = nullptr;
+
+  AddNewVisitDialog* addNewVisitDialog = nullptr;
 };
 
 #endif  // VISITWINDOWS_H

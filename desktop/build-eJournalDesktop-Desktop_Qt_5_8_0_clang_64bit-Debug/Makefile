@@ -58,7 +58,8 @@ SOURCES       = ../eJournalDesktop/main.cpp \
 		../eJournalDesktop/models/visitsmodel.cpp \
 		../eJournalDesktop/visitwindows.cpp \
 		../eJournalDesktop/models/visitstablemodel.cpp \
-		../eJournalDesktop/const.cpp moc_mainwindow.cpp \
+		../eJournalDesktop/const.cpp \
+		../eJournalDesktop/addnewvisitdialog.cpp moc_mainwindow.cpp \
 		moc_addnewuser.cpp \
 		moc_studentmodels.cpp \
 		moc_basemodel.cpp \
@@ -66,7 +67,8 @@ SOURCES       = ../eJournalDesktop/main.cpp \
 		moc_studentdisplay.cpp \
 		moc_visitsmodel.cpp \
 		moc_visitwindows.cpp \
-		moc_visitstablemodel.cpp
+		moc_visitstablemodel.cpp \
+		moc_addnewvisitdialog.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		addnewuser.o \
@@ -78,6 +80,7 @@ OBJECTS       = main.o \
 		visitwindows.o \
 		visitstablemodel.o \
 		const.o \
+		addnewvisitdialog.o \
 		moc_mainwindow.o \
 		moc_addnewuser.o \
 		moc_studentmodels.o \
@@ -86,8 +89,10 @@ OBJECTS       = main.o \
 		moc_studentdisplay.o \
 		moc_visitsmodel.o \
 		moc_visitwindows.o \
-		moc_visitstablemodel.o
-DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
+		moc_visitstablemodel.o \
+		moc_addnewvisitdialog.o
+DIST          = ../eJournalDesktop/todolist \
+		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/qdevice.pri \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/device_config.prf \
 		/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/common/unix.conf \
@@ -274,7 +279,8 @@ DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf 
 		../eJournalDesktop/models/visitsmodel.h \
 		../eJournalDesktop/visitwindows.h \
 		../eJournalDesktop/models/visitstablemodel.h \
-		../eJournalDesktop/const.h ../eJournalDesktop/main.cpp \
+		../eJournalDesktop/const.h \
+		../eJournalDesktop/addnewvisitdialog.h ../eJournalDesktop/main.cpp \
 		../eJournalDesktop/mainwindow.cpp \
 		../eJournalDesktop/addnewuser.cpp \
 		../eJournalDesktop/models/studentmodels.cpp \
@@ -284,7 +290,8 @@ DIST          = /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/spec_pre.prf 
 		../eJournalDesktop/models/visitsmodel.cpp \
 		../eJournalDesktop/visitwindows.cpp \
 		../eJournalDesktop/models/visitstablemodel.cpp \
-		../eJournalDesktop/const.cpp
+		../eJournalDesktop/const.cpp \
+		../eJournalDesktop/addnewvisitdialog.cpp
 QMAKE_TARGET  = eJournalDesktop
 DESTDIR       = 
 TARGET        = eJournalDesktop.app/Contents/MacOS/eJournalDesktop
@@ -293,7 +300,7 @@ TARGET        = eJournalDesktop.app/Contents/MacOS/eJournalDesktop
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_addnewuser.h ui_studentdisplay.h ui_visitwindows.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_addnewuser.h ui_studentdisplay.h ui_visitwindows.h ui_addnewvisitdialog.h $(OBJECTS)  
 	@test -d eJournalDesktop.app/Contents/MacOS/ || mkdir -p eJournalDesktop.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -690,9 +697,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.h ../eJournalDesktop/addnewuser.h ../eJournalDesktop/models/studentmodels.h ../eJournalDesktop/models/basemodel.h ../eJournalDesktop/models/dbiniter.h ../eJournalDesktop/models/studenttablemodel.h ../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h ../eJournalDesktop/studentdisplay.h ../eJournalDesktop/models/visitsmodel.h ../eJournalDesktop/visitwindows.h ../eJournalDesktop/models/visitstablemodel.h ../eJournalDesktop/const.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/studenttablemodel.cpp ../eJournalDesktop/studentdisplay.cpp ../eJournalDesktop/models/visitsmodel.cpp ../eJournalDesktop/visitwindows.cpp ../eJournalDesktop/models/visitstablemodel.cpp ../eJournalDesktop/const.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.ui ../eJournalDesktop/addnewuser.ui ../eJournalDesktop/studentdisplay.ui ../eJournalDesktop/visitwindows.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.h ../eJournalDesktop/addnewuser.h ../eJournalDesktop/models/studentmodels.h ../eJournalDesktop/models/basemodel.h ../eJournalDesktop/models/dbiniter.h ../eJournalDesktop/models/studenttablemodel.h ../eJournalDesktop/models/insertindexmacrosoperatorinbasemodel.h ../eJournalDesktop/studentdisplay.h ../eJournalDesktop/models/visitsmodel.h ../eJournalDesktop/visitwindows.h ../eJournalDesktop/models/visitstablemodel.h ../eJournalDesktop/const.h ../eJournalDesktop/addnewvisitdialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/addnewuser.cpp ../eJournalDesktop/models/studentmodels.cpp ../eJournalDesktop/models/basemodel.cpp ../eJournalDesktop/models/studenttablemodel.cpp ../eJournalDesktop/studentdisplay.cpp ../eJournalDesktop/models/visitsmodel.cpp ../eJournalDesktop/visitwindows.cpp ../eJournalDesktop/models/visitstablemodel.cpp ../eJournalDesktop/const.cpp ../eJournalDesktop/addnewvisitdialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../eJournalDesktop/mainwindow.ui ../eJournalDesktop/addnewuser.ui ../eJournalDesktop/studentdisplay.ui ../eJournalDesktop/visitwindows.ui ../eJournalDesktop/addnewvisitdialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -724,9 +731,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /Users/yurabraiko/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp moc_visitsmodel.cpp moc_visitwindows.cpp moc_visitstablemodel.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp moc_visitsmodel.cpp moc_visitwindows.cpp moc_visitstablemodel.cpp moc_addnewvisitdialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp moc_visitsmodel.cpp moc_visitwindows.cpp moc_visitstablemodel.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_addnewuser.cpp moc_studentmodels.cpp moc_basemodel.cpp moc_studenttablemodel.cpp moc_studentdisplay.cpp moc_visitsmodel.cpp moc_visitwindows.cpp moc_visitstablemodel.cpp moc_addnewvisitdialog.cpp
 moc_mainwindow.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../eJournalDesktop/addnewuser.h \
@@ -762,6 +769,7 @@ moc_mainwindow.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/He
 		../eJournalDesktop/visitwindows.h \
 		../eJournalDesktop/models/visitstablemodel.h \
 		../eJournalDesktop/models/visitsmodel.h \
+		../eJournalDesktop/addnewvisitdialog.h \
 		../eJournalDesktop/mainwindow.h \
 		moc_predefs.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
@@ -941,6 +949,7 @@ moc_visitwindows.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../eJournalDesktop/models/visitsmodel.h \
+		../eJournalDesktop/addnewvisitdialog.h \
 		../eJournalDesktop/visitwindows.h \
 		moc_predefs.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
@@ -973,11 +982,18 @@ moc_visitstablemodel.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
 	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/models/visitstablemodel.h -o moc_visitstablemodel.cpp
 
+moc_addnewvisitdialog.cpp: /Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../eJournalDesktop/addnewvisitdialog.h \
+		moc_predefs.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/bin/moc
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/yurabraiko/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/yurabraiko/dev/qt/eJournal/desktop/eJournalDesktop -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/yurabraiko/Qt/5.8/clang_64/lib ../eJournalDesktop/addnewvisitdialog.h -o moc_addnewvisitdialog.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_addnewuser.h ui_studentdisplay.h ui_visitwindows.h
+compiler_uic_make_all: ui_mainwindow.h ui_addnewuser.h ui_studentdisplay.h ui_visitwindows.h ui_addnewvisitdialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_addnewuser.h ui_studentdisplay.h ui_visitwindows.h
+	-$(DEL_FILE) ui_mainwindow.h ui_addnewuser.h ui_studentdisplay.h ui_visitwindows.h ui_addnewvisitdialog.h
 ui_mainwindow.h: ../eJournalDesktop/mainwindow.ui \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/uic
 	/Users/yurabraiko/Qt/5.8/clang_64/bin/uic ../eJournalDesktop/mainwindow.ui -o ui_mainwindow.h
@@ -993,6 +1009,10 @@ ui_studentdisplay.h: ../eJournalDesktop/studentdisplay.ui \
 ui_visitwindows.h: ../eJournalDesktop/visitwindows.ui \
 		/Users/yurabraiko/Qt/5.8/clang_64/bin/uic
 	/Users/yurabraiko/Qt/5.8/clang_64/bin/uic ../eJournalDesktop/visitwindows.ui -o ui_visitwindows.h
+
+ui_addnewvisitdialog.h: ../eJournalDesktop/addnewvisitdialog.ui \
+		/Users/yurabraiko/Qt/5.8/clang_64/bin/uic
+	/Users/yurabraiko/Qt/5.8/clang_64/bin/uic ../eJournalDesktop/addnewvisitdialog.ui -o ui_addnewvisitdialog.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -1042,6 +1062,7 @@ main.o: ../eJournalDesktop/main.cpp ../eJournalDesktop/mainwindow.h \
 		../eJournalDesktop/visitwindows.h \
 		../eJournalDesktop/models/visitstablemodel.h \
 		../eJournalDesktop/models/visitsmodel.h \
+		../eJournalDesktop/addnewvisitdialog.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../eJournalDesktop/models/dbiniter.h \
@@ -1089,6 +1110,7 @@ mainwindow.o: ../eJournalDesktop/mainwindow.cpp ../eJournalDesktop/mainwindow.h 
 		../eJournalDesktop/visitwindows.h \
 		../eJournalDesktop/models/visitstablemodel.h \
 		../eJournalDesktop/models/visitsmodel.h \
+		../eJournalDesktop/addnewvisitdialog.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../eJournalDesktop/mainwindow.cpp
 
@@ -1270,6 +1292,7 @@ visitwindows.o: ../eJournalDesktop/visitwindows.cpp ../eJournalDesktop/visitwind
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../eJournalDesktop/models/visitsmodel.h \
+		../eJournalDesktop/addnewvisitdialog.h \
 		ui_visitwindows.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o visitwindows.o ../eJournalDesktop/visitwindows.cpp
 
@@ -1306,6 +1329,21 @@ const.o: ../eJournalDesktop/const.cpp ../eJournalDesktop/const.h \
 		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o const.o ../eJournalDesktop/const.cpp
 
+addnewvisitdialog.o: ../eJournalDesktop/addnewvisitdialog.cpp ../eJournalDesktop/addnewvisitdialog.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		ui_addnewvisitdialog.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDate \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../eJournalDesktop/const.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Users/yurabraiko/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addnewvisitdialog.o ../eJournalDesktop/addnewvisitdialog.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
@@ -1332,6 +1370,9 @@ moc_visitwindows.o: moc_visitwindows.cpp
 
 moc_visitstablemodel.o: moc_visitstablemodel.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_visitstablemodel.o moc_visitstablemodel.cpp
+
+moc_addnewvisitdialog.o: moc_addnewvisitdialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_addnewvisitdialog.o moc_addnewvisitdialog.cpp
 
 ####### Install
 
