@@ -1,5 +1,6 @@
 #include "visitsmodel.h"
 #include "studentmodels.h"
+#include "const.h"
 
 VisitsModel::VisitsModel() {}
 
@@ -29,12 +30,13 @@ void VisitsModel::updateDataFromSql(QSqlQuery& data) {
   this->mark = data.value(mark_FIELD_NAME).toDouble();
 }
 
-QStringList VisitsModel::getCountDifferentDate() {
+QList<VisitInfo> VisitsModel::getCountDifferentDate() {
   QSqlQuery query;
   // SELECT date from VisitsModel GROUP BY date;
   VisitsModel stuff;
-  QStringList result;
-  QString stringQuery = "SELECT " + stuff.date_FIELD_NAME + " FROM " +
+  QList<VisitInfo> result;
+  QString stringQuery = "SELECT " + stuff.date_FIELD_NAME + " , " +
+                        stuff.comment_FIELD_NAME + " FROM " +
                         VISIT_MODEL_TABLE_NAME + " GROUP BY " +
                         stuff.date_FIELD_NAME + ";";
   if (!query.exec(stringQuery)) {
@@ -44,7 +46,15 @@ QStringList VisitsModel::getCountDifferentDate() {
     return result;
   }
   while (query.next()) {
-    result.append(query.value(0).toString());
+    QString comenet;
+    if (query.value(1).isNull())
+      comenet = "";
+    else
+      comenet = query.value(1).toString();
+    QDate date = query.value(0).toDate();
+    if (!date.isValid())
+      continue;
+    result.append(VisitInfo(comenet, date.toString(DATE_FORMAT)));
   }
   return result;
 }
@@ -57,3 +67,10 @@ QList<VisitsModel*>* VisitsModel::selectForDate(QString date) {
 }
 
 const QString VISIT_MODEL_TABLE_NAME = "VisitsModel";
+
+VisitInfo::VisitInfo(QString _comment, QString _date)
+    : comment(_comment), date(_date) {}
+
+QString VisitInfo::toString() const {
+  return date + "\n(" + comment + ")";
+}

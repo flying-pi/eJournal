@@ -27,7 +27,7 @@ class VisitsTableModel : public QAbstractTableModel {
  private:
   QList<StudentModels*>* students = nullptr;
   QList<QList<VisitsModel*>*> visits;
-  QStringList collumnName;
+  QList<VisitInfo> collumnName;
 
   // QAbstractItemModel interface
  public:

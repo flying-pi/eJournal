@@ -17,7 +17,8 @@ void VisitsTableModel::setSearchRequest(QString request) {
     bool isAdded = false;
     foreach (auto collumn, collumnName) {
       visits.append(new QList<VisitsModel*>());
-      auto allExistVisit = VisitsModel::selectForDate(collumn);
+      auto allExistVisit = VisitsModel::selectForDate(
+          QVariant(QDate::fromString(collumn.date, DATE_FORMAT)).toString());
       for (int i = 0; i < students->size(); i++) {
         isAdded = false;
         for (int j = 0; j < allExistVisit->size(); j++) {
@@ -54,6 +55,9 @@ QVariant VisitsTableModel::data(const QModelIndex& index, int role) const {
     auto item = visits.at(index.column() - 1)->at(index.row());
     return QVariant(item == nullptr ? 123 : item->getmark());
   }
+  if (role == Qt::ToolTipRole) {
+    return QVariant(collumnName[index.column() - 1].toString());
+  }
   return QVariant();
 }
 
@@ -65,14 +69,14 @@ QVariant VisitsTableModel::headerData(int section,
     if (section == 0) {
       return QVariant(USER_LABEL);
     }
-    return QVariant(collumnName[section - 1]);
+    return QVariant(collumnName[section - 1].toString());
   } else {
     return QVariant();
   }
 }
 
 void VisitsTableModel::addNewDate(QDate date, QString comment) {
-  this->collumnName.insert(0, date.toString(DATE_FORMAT));
+  this->collumnName.insert(0, VisitInfo(comment, date.toString(DATE_FORMAT)));
   this->visits.insert(0, new QList<VisitsModel*>());
   for (int i = 0; i < students->size(); i++)
     visits.at(0)->append(nullptr);
@@ -91,9 +95,12 @@ bool VisitsTableModel::setData(const QModelIndex& index,
   VisitsModel* visit = visits.at(index.column() - 1)->at(index.row());
   if (visit == nullptr) {
     visit = new VisitsModel();
-    QString dateString = collumnName.at(index.column() - 1);
+    QString dateString = collumnName.at(index.column() - 1).date;
     QDate date = QDate::fromString(dateString, DATE_FORMAT);
-    visit->setstudentID(students->at(index.row())->getID())->setdate(date);
+    date.toString();
+    visit->setstudentID(students->at(index.row())->getID())
+        ->setdate(date)
+        ->setcomment(collumnName[index.column() - 1].comment);
     visits.at(index.column() - 1)->replace(index.row(), visit);
   }
   visit->setmark(value.toDouble())->writeChanges();

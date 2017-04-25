@@ -92,6 +92,7 @@ public:
     void retranslateUi(QWidget *AddNewVisitDialog)
     {
         AddNewVisitDialog->setWindowTitle(QApplication::translate("AddNewVisitDialog", "Form", Q_NULLPTR));
+        comment->setText(QApplication::translate("AddNewVisitDialog", "\320\222\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\320\275\320\275\321\217", Q_NULLPTR));
         label_2->setText(QApplication::translate("AddNewVisitDialog", "\320\232\320\276\320\274\320\265\320\275\321\202\320\260\321\200:", Q_NULLPTR));
         label->setText(QApplication::translate("AddNewVisitDialog", "\320\224\320\260\321\202\320\260 :", Q_NULLPTR));
         addBtn->setText(QApplication::translate("AddNewVisitDialog", "\320\224\320\276\320\264\320\260\321\202\320\270", Q_NULLPTR));

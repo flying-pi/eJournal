@@ -8,6 +8,7 @@ AddNewVisitDialog::AddNewVisitDialog(QWidget* parent)
     : QWidget(parent), ui(new Ui::AddNewVisitDialog) {
   ui->setupUi(this);
   this->adjustSize();
+  ui->date->setText(QDate::currentDate().toString(DATE_FORMAT));
 }
 
 AddNewVisitDialog::~AddNewVisitDialog() {

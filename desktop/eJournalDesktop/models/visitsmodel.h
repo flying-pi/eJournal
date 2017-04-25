@@ -6,6 +6,15 @@
 
 extern const QString VISIT_MODEL_TABLE_NAME;
 
+class VisitInfo {
+ public:
+  VisitInfo(QString _comment = "", QString _date = "");
+  QString comment;
+  QString date;
+
+  QString toString() const;
+};
+
 class VisitsModel : public BaseModel {
   Q_OBJECT
  public:
@@ -13,7 +22,7 @@ class VisitsModel : public BaseModel {
 
   idSupport(VisitsModel);
 
-  dbField(VisitsModel, QDate, TEXT NOT NULL, date, QDate(1998, 0, 0));
+  dbField(VisitsModel, QDate, TEXT NOT NULL, date, QDate::currentDate());
   dbField(VisitsModel, QString, TEXT, comment, "");
   dbField(VisitsModel, int, INTEGER NOT NULL, studentID, -1);
   dbField(VisitsModel, double, REAL NOT NULL, mark, false);
@@ -37,7 +46,7 @@ class VisitsModel : public BaseModel {
                                  QList<VisitsModel*>*& out);
 
   static QList<VisitsModel*>* selectAll();
-  static QStringList getCountDifferentDate();
+  static QList<VisitInfo> getCountDifferentDate();
 
   static QList<VisitsModel*>* selectForDate(QString date);
 
