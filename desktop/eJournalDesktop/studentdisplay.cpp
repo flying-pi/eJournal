@@ -3,6 +3,7 @@
 #include "models/studenttablemodel.h"
 #include <QDebug>
 #include "addnewuser.h"
+#include "models/studentmodels.h"
 
 StudentDisplay::StudentDisplay(QWidget* parent)
     : QWidget(parent), ui(new Ui::StudentDisplay) {
@@ -54,4 +55,35 @@ void StudentDisplay::on_addstudentBtn_clicked() {
 void StudentDisplay::closeEvent(QCloseEvent* event) {
   emit closeSignal();
   event->accept();
+}
+
+void StudentDisplay::on_studentFilter_clicked() {
+  appendSearchFilter(STUDENT_NAME_REQUEST_STRING);
+}
+
+void StudentDisplay::on_groupFilter_clicked() {
+  appendSearchFilter(DEPARTAMENT_NAME_REQUEST_STRING);
+}
+
+void StudentDisplay::appendSearchFilter(QString filterName) {
+  QString request = ui->searchRequestField->text();
+  request += " " + filterName + "()";
+  ui->searchRequestField->setText(request);
+  ui->searchRequestField->setFocus();
+  ui->searchRequestField->setCursorPosition(request.length() - 1);
+}
+
+void StudentDisplay::on_departamentFilter_clicked() {
+  appendSearchFilter(DEPARTAMENT_NAME_REQUEST_STRING);
+}
+
+void StudentDisplay::on_runRequest_clicked() {
+  QString userRequest = ui->searchRequestField->text();
+  QString request;
+  if (userRequest.size() < 3 ||
+      (!StudentModels::convertUserRequestToSql(userRequest, request))) {
+    studentTableModel->setStudentList(StudentModels::selectAll());
+    return;
+  }
+  studentTableModel->setStudentList(StudentModels::selectByRequest(request));
 }

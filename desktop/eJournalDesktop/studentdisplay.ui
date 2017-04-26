@@ -17,33 +17,26 @@
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="searchRequestField"/>
      </item>
      <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="studentFilter">
          <property name="text">
           <string>Студент</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="groupFilter">
          <property name="text">
           <string>Група</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>Курс</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="departamentFilter">
          <property name="text">
           <string>Факутльтет</string>
          </property>
@@ -65,7 +58,7 @@
       </layout>
      </item>
      <item row="0" column="1">
-      <widget class="QToolButton" name="toolButton">
+      <widget class="QToolButton" name="runRequest">
        <property name="text">
         <string>Go</string>
        </property>

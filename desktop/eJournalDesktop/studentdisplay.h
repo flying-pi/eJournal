@@ -24,6 +24,7 @@ class StudentDisplay : public QWidget {
   QAction* editUserAction = nullptr;
 
   void initMenu();
+  void appendSearchFilter(QString filterName);
 
  signals:
 
@@ -35,7 +36,14 @@ class StudentDisplay : public QWidget {
  private slots:
   void on_addstudentBtn_clicked();
 
-  // QWidget interface
+  void on_studentFilter_clicked();
+
+  void on_groupFilter_clicked();
+
+  void on_departamentFilter_clicked();
+
+  void on_runRequest_clicked();
+
  protected:
   virtual void closeEvent(QCloseEvent* event) override;
 };
