@@ -24,6 +24,8 @@ class VisitWindows : public QWidget {
   void onNewDateAdded(QDate date, QString comment);
   void onAddDataDialogClose();
 
+  void on_requestField_editingFinished();
+
  signals:
 
   void closeSignal();
@@ -32,6 +34,8 @@ class VisitWindows : public QWidget {
   virtual void closeEvent(QCloseEvent* event) override;
 
  private:
+  void refreshTable();
+
   Ui::VisitWindows* ui;
   void appendSearchFilter(QString filterName);
   VisitsTableModel* visitTableModel = nullptr;

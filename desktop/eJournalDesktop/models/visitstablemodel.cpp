@@ -10,29 +10,31 @@ VisitsTableModel::~VisitsTableModel() {
 }
 
 void VisitsTableModel::setSearchRequest(QString request) {
-  if (request.isEmpty()) {
+  if (request.size() < 5) {
     students = StudentModels::selectAll();
-    collumnName = VisitsModel::getCountDifferentDate();
-    visits.clear();
-    bool isAdded = false;
-    foreach (auto collumn, collumnName) {
-      visits.append(new QList<VisitsModel*>());
-      auto allExistVisit = VisitsModel::selectForDate(
-          QVariant(QDate::fromString(collumn.date, DATE_FORMAT)).toString());
-      for (int i = 0; i < students->size(); i++) {
-        isAdded = false;
-        for (int j = 0; j < allExistVisit->size(); j++) {
-          if (students->at(i)->getID() ==
-              allExistVisit->at(j)->getstudentID()) {
-            visits.last()->append(allExistVisit->at(j));
-            allExistVisit->removeAt(j);
-            isAdded = true;
-            break;
-          }
+
+  } else {
+    students = StudentModels::selectByRequest(request);
+  }
+  collumnName = VisitsModel::getCountDifferentDate();
+  visits.clear();
+  bool isAdded = false;
+  foreach (auto collumn, collumnName) {
+    visits.append(new QList<VisitsModel*>());
+    auto allExistVisit = VisitsModel::selectForDate(
+        QVariant(QDate::fromString(collumn.date, DATE_FORMAT)).toString());
+    for (int i = 0; i < students->size(); i++) {
+      isAdded = false;
+      for (int j = 0; j < allExistVisit->size(); j++) {
+        if (students->at(i)->getID() == allExistVisit->at(j)->getstudentID()) {
+          visits.last()->append(allExistVisit->at(j));
+          allExistVisit->removeAt(j);
+          isAdded = true;
+          break;
         }
-        if (!isAdded)
-          visits.last()->append(nullptr);
       }
+      if (!isAdded)
+        visits.last()->append(nullptr);
     }
   }
 }
@@ -53,7 +55,7 @@ QVariant VisitsTableModel::data(const QModelIndex& index, int role) const {
   }
   if (role == Qt::EditRole || role == Qt::DisplayRole) {
     auto item = visits.at(index.column() - 1)->at(index.row());
-    return QVariant(item == nullptr ? 123 : item->getmark());
+    return QVariant(item == nullptr ? 0 : item->getmark());
   }
   if (role == Qt::ToolTipRole) {
     return QVariant(collumnName[index.column() - 1].toString());

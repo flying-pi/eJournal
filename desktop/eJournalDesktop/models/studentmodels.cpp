@@ -69,6 +69,18 @@ bool StudentModels::convertUserRequestToSql(const QString& userRequest,
     limitation.append("academicGroup LIKE \'%" + buf + "%\'");
     qDebug() << buf;
   }
+  if (userRequest.contains(STUDENT_NAME_REQUEST_STRING)) {
+    int startIndex = userRequest.indexOf(DEPARTAMENT_NAME_REQUEST_STRING) +
+                     DEPARTAMENT_NAME_REQUEST_STRING.length() + 1;
+    QString buf = "";
+    for (int i = startIndex;
+         i < userRequest.length() && userRequest.at(i) != ")"; i++) {
+      buf += userRequest.at(i);
+    }
+    limitation.append("( ( firstName LIKE \'%" + buf +
+                      "%\') OR  ( midlName LIKE \'%" + buf +
+                      "%\') OR  ( secondName LIKE \'%" + buf + "%\') ) ");
+  }
   outSqlRequest =
       "SELECT " + target + " FROM " + StudentModelsTableName + " WHERE ";
   for (int i = 0; i < limitation.size(); i++) {

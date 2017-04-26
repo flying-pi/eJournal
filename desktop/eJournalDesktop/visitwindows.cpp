@@ -27,6 +27,12 @@ void VisitWindows::closeEvent(QCloseEvent* event) {
   emit closeSignal();
 }
 
+void VisitWindows::refreshTable() {
+  ui->visitTable->setModel(nullptr);
+  ui->visitTable->setModel(visitTableModel);
+  ui->visitTable->repaint();
+}
+
 void VisitWindows::appendSearchFilter(QString filterName) {
   QString request = ui->requestField->text();
   request += " " + filterName + "()";
@@ -46,12 +52,22 @@ void VisitWindows::on_AddNewDateButton_clicked() {
 
 void VisitWindows::onNewDateAdded(QDate date, QString comment) {
   visitTableModel->addNewDate(date, comment);
-  ui->visitTable->setModel(nullptr);
-  ui->visitTable->setModel(visitTableModel);
-  ui->visitTable->repaint();
+  refreshTable();
 }
 
 void VisitWindows::onAddDataDialogClose() {
   if (addNewVisitDialog)
     delete addNewVisitDialog;
+}
+
+void VisitWindows::on_requestField_editingFinished() {
+  QString userRequest = ui->requestField->text();
+  QString request;
+  if (userRequest.size() < 5) {
+    request = "";
+  } else if (!StudentModels::convertUserRequestToSql(userRequest, request)) {
+    request = "";
+  }
+  visitTableModel->setSearchRequest(request);
+  refreshTable();
 }

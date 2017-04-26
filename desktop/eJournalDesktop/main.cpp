@@ -60,8 +60,8 @@ int main(int argc, char* argv[]) {
 
   //  StudentDisplay w;
   //  AddNewUser w;
-  //  MainWindow w;
-  VisitWindows w;
+  MainWindow w;
+  //  VisitWindows w;
 
   w.show();
 

@@ -101,9 +101,8 @@ class StudentModels : public BaseModel {
   virtual QString getDBName() { return StudentModelsTableName; }
 
   static QList<StudentModels*>* selectAll() {
-    return select<StudentModels>(
-        "select * from " + StudentModels::StudentModelsTableName,
-        QList<QVariant>());
+    return selectByRequest("select * from " +
+                           StudentModels::StudentModelsTableName);
   }
 
   static bool convertUserRequestToSql(const QString& userRequest,
@@ -112,6 +111,10 @@ class StudentModels : public BaseModel {
 
   inline QString getFullName() {
     return getfirstName() + " " + getsecondName();
+  }
+
+  static QList<StudentModels*>* selectByRequest(QString request) {
+    return select<StudentModels>(request);
   }
 
   // BaseModel interface
