@@ -57,3 +57,31 @@ QVariant StudentTableModel::headerData(int section,
     return QVariant();
   }
 }
+
+void StudentTableModel::sort(int column, Qt::SortOrder order) {
+  qInfo() << order;
+  auto log = qInfo() << "befor sort :: ";
+  for (int i = 0; i < students->size(); i++) {
+    log << (*(*students)[i])[column].toString();
+  }
+
+  bool isSwap;
+  for (int i = 0; i < students->size(); i++) {
+    for (int j = i + 1; j < students->size(); j++) {
+      isSwap = Qt::DescendingOrder == order
+                   ? (*(*students)[i])[column] > (*(*students)[j])[column]
+                   : (*(*students)[i])[column] < (*(*students)[j])[column];
+      if (isSwap) {
+        auto buf = (*students)[i];
+        (*students)[i] = (*students)[j];
+        (*students)[j] = buf;
+      }
+    }
+  }
+
+  log = qInfo() << "after sort :: ";
+  for (int i = 0; i < students->size(); i++) {
+    log << (*(*students)[i])[column].toString();
+  }
+  emit layoutChanged();
+}

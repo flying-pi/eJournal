@@ -24,6 +24,10 @@ class StudentTableModel : public QAbstractTableModel {
 
  private:
   QList<StudentModels*>* students = nullptr;
+
+  // QAbstractItemModel interface
+ public:
+  virtual void sort(int column, Qt::SortOrder order) override;
 };
 
 #endif  // STUDENTTABLEMODEL_H
